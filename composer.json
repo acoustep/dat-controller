@@ -1,0 +1,20 @@
+{
+    "name": "acoustep/dat-controller",
+    "description": "",
+    "authors": [
+        {
+            "name": "Mitch Stanley",
+            "email": "mitch+componentgenerator@fastmail.co.uk"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Acoustep\\DatController": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
