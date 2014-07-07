@@ -13,6 +13,23 @@ trait DatTrait {
 
 	protected $controllerName;
 
+	public function getControllerName()
+	{
+		if ($this->controllerName) return $this->controllerName;
+
+		$this->controllerName = preg_replace(
+			'/Controller$/', 
+			'', 
+			__CLASS__
+		);
+		return $this->controllerName;
+	}
+
+	public function setControllerName($value)
+	{
+		$this->controllerName = $value;
+	}
+
 	/*
 	|--------------------------------------------------------------------------
 	| Singular
@@ -22,7 +39,17 @@ trait DatTrait {
 	|
 	*/
 
-	public $singular;
+	protected $singular;
+
+	public function getSingular()
+	{
+		return $this->singular ?: snake_case(str_singular($this->getControllerName()));
+	}
+
+	public function setSingular($value)
+	{
+		$this->singular = $value;
+	}
 
 	/*
 	|--------------------------------------------------------------------------
@@ -33,7 +60,17 @@ trait DatTrait {
 	|
 	*/
 
-	public $plural;
+	protected $plural;
+
+	public function getPlural()
+	{
+		return $this->plural ?: snake_case(str_plural($this->getControllerName()));
+	}
+
+	public function setPlural($value)
+	{
+		$this->plural = $value;
+	}
 
 	/*
 	|--------------------------------------------------------------------------
@@ -44,7 +81,19 @@ trait DatTrait {
 	|
 	*/
 
-	public $model;
+	protected $model;
+
+	public function getModel()
+	{
+		$singular_model = str_singular($this->getControllerName());
+		return ($this->model) ? new $this->model : new $singular_model;
+	}
+
+
+	public function setModel($value)
+	{
+		$this->model = $value;
+	}
 
 	/*
 	|--------------------------------------------------------------------------
@@ -55,7 +104,12 @@ trait DatTrait {
 	|
 	*/
 
-	public $staticModel;
+
+	public function getStaticModel()
+	{
+		$singular_model = str_singular($this->getControllerName());
+		return ($this->model) ? $this->model : $singular_model;
+	}
 
 	/*
 	|--------------------------------------------------------------------------
@@ -66,22 +120,17 @@ trait DatTrait {
 	|
 	*/
 
-	public $views;
+	protected $views;
 
-	public function __construct()
+	public function getViews()
 	{
-		$this->controllerName = strtolower(preg_replace(
-			'/Controller$/', 
-			'', 
-			__CLASS__
-		));
+		return $this->views ?: $this->getPlural();
+	}
 
-		$this->singular = ($this->singular) ?: snake_case(str_singular($this->controllerName));
-		$this->plural = ($this->plural) ?: snake_case(str_plural($this->controllerName));
-		$singular_model = str_singular($this->controllerName);
-		$this->model = ($this->model) ? new $this->model : new $singular_model;
-		$this->staticModel = ($this->staticModel) ? $this->staticModel : $singular_model;
-		$this->views = ($this->views) ?: $this->plural;
+
+	public function setViews($value)
+	{
+		$this->views = $value;
 	}
 }
 

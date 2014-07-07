@@ -1,13 +1,11 @@
 <?php namespace Acoustep\DatController;
 
 trait DatIndexTrait {
-
-
 	public function index()
 	{
 		list($pagination, $orderBy) = $this->indexConfig();
 
-		$model = $this->model;
+		$model = $this->getModel();
 		$model = $this->buildOrder($model, $orderBy);
 
 		if($pagination > 0)
@@ -15,19 +13,19 @@ trait DatIndexTrait {
 		else
 			$model = $model->get();
 
-		return \View::make($this->views.'.index')
-			->with($this->plural, $model);
+		return \View::make($this->getViews().'.index')
+			->with($this->getPlural(), $model);
 	}
 
 	protected function indexConfig()
 	{
 		$pagination = (property_exists(
-			$this->controllerName.'Controller', 
+			$this->getControllerName().'Controller', 
 			'pagination'
 		)) ? $this->pagination : 0;
 
 		$orderBy = (property_exists(
-			$this->controllerName.'Controller', 
+			$this->getControllerName().'Controller', 
 			'orderBy'
 		)) ? $this->orderBy : ['id' => 'desc'];
 

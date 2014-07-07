@@ -7,6 +7,7 @@ trait DatResourceTrait {
 			DatStoreTrait,
 			DatEditTrait,
 			DatUpdateTrait,
-			DatDestroyTrait;
+			DatDestroyTrait,
+			DatShowTrait;
 }
 

@@ -4,7 +4,7 @@ trait DatStoreTrait {
 
 	public function store()
 	{
-		$staticModel = $this->staticModel;
+		$staticModel = $this->getStaticModel();
 		$validator = \Validator::make($data = \Input::all(), $staticModel::$rules);
 
 		if ($validator->fails())
@@ -12,9 +12,9 @@ trait DatStoreTrait {
 			return \Redirect::back()->withErrors($validator)->withInput();
 		}
 
-		$this->model->create($data);
+		$this->getModel()->create($data);
 
-		return \Redirect::route($this->views.'.index');
+		return \Redirect::route($this->getViews().'.index');
 	}
 }
 

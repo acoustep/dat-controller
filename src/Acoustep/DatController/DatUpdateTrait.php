@@ -1,11 +1,10 @@
 <?php namespace Acoustep\DatController;
 
 trait DatUpdateTrait {
-
 	public function update($id)
 	{
-		$staticModel = $this->staticModel;
-		$model = $this->model->findOrFail($id);
+		$staticModel = $this->getStaticModel();
+		$model = $this->getModel()->findOrFail($id);
 		$validator = \Validator::make($data = \Input::all(), $staticModel::$rules);
 
 		if ($validator->fails())
@@ -14,7 +13,7 @@ trait DatUpdateTrait {
 		}
 
 		$model->update($data);
-		return \Redirect::route($this->views.'.index');
+		return \Redirect::route($this->getViews().'.index');
 	}
 }
 
