@@ -1,8 +1,9 @@
 <?php
 
 use \Mockery as m;
+use Orchestra\Testbench\TestCase;
 
-class DatTraitTest extends \PHPUnit_Framework_TestCase {
+class DatTraitTest extends TestCase {
 
 	public $controller;
 

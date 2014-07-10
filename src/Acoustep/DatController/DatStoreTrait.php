@@ -4,8 +4,7 @@ trait DatStoreTrait {
 
 	public function store()
 	{
-		$staticModel = $this->getStaticModel();
-		$validator = \Validator::make($data = \Input::all(), $staticModel::$rules);
+		$validator = \Validator::make($data = \Input::all(), $this->getRules());
 
 		if ($validator->fails())
 		{

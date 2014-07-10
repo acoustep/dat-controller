@@ -111,6 +111,19 @@ trait DatTrait {
 		return ($this->model) ? $this->model : $singular_model;
 	}
 
+	protected $rules;
+
+	public function getRules()
+	{
+		$staticModel = $this->getStaticModel();
+		return ($this->rules) ? $this->rules : $staticModel::$rules;
+	}
+
+	public function setRules($rules)
+	{
+		$this->rules = $rules;
+	}
+
 	/*
 	|--------------------------------------------------------------------------
 	| Views
