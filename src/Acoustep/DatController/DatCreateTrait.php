@@ -1,6 +1,10 @@
 <?php namespace Acoustep\DatController;
 
 trait DatCreateTrait {
+	/**
+	 * create
+	 *
+	 */
 	public function create()
 	{
 		$model = $this->getModel();

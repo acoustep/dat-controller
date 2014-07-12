@@ -2,6 +2,10 @@
 
 trait DatStoreTrait {
 
+	/**
+	 * store
+	 *
+	 */
 	public function store()
 	{
 		$validator = \Validator::make($data = \Input::all(), $this->getRules());

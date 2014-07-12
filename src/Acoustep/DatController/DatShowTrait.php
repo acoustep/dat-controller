@@ -1,6 +1,11 @@
 <?php namespace Acoustep\DatController;
 
 trait DatShowTrait {
+	/**
+	 * show
+	 *
+	 * @param integer $id
+	 */
 	public function show($id)
 	{
 		$data = $this->getModel()->find($id);

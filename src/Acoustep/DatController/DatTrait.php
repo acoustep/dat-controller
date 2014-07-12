@@ -2,17 +2,21 @@
 
 trait DatTrait {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Controller name
-	|--------------------------------------------------------------------------
-	|
-	| Name of the controller without the Controller Postfix
-	|
-	*/
-
+	/**
+	 * controllerName
+	 *
+	 * @var string
+	 */
 	protected $controllerName;
 
+	/**
+	 * getControllerName
+	 *
+	 * ControllerName if set manually.
+	 * The current class name with "Controller" cut from the end.
+	 *
+	 * @return string
+	 */
 	public function getControllerName()
 	{
 		if ($this->controllerName) return $this->controllerName;
@@ -25,20 +29,24 @@ trait DatTrait {
 		return $this->controllerName;
 	}
 
+	/**
+	 * setControllerName
+	 *
+	 * @param string $value
+	 */
 	public function setControllerName($value)
 	{
 		$this->controllerName = $value;
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Singular
-	|--------------------------------------------------------------------------
-	|
-	| Snakecase singular form for the variable name in create,edit,destroy etc.
-	|
-	*/
-
+	/**
+	 * singular
+	 *
+	 * Singular is set manually.
+	 * Singular version of controller name in snake case.
+	 *
+	 * @return string
+	 */
 	protected $singular;
 
 	public function getSingular()
@@ -46,43 +54,61 @@ trait DatTrait {
 		return $this->singular ?: snake_case(str_singular($this->getControllerName()));
 	}
 
+	/**
+	 * setSingular
+	 *
+	 * @param string $value
+	 */
 	public function setSingular($value)
 	{
 		$this->singular = $value;
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Plural
-	|--------------------------------------------------------------------------
-	|
-	| Snakecase plural form for the variable name in the index.
-	|
-	*/
-
+	/**
+	 * plural
+	 *
+	 * @var string
+	 */
 	protected $plural;
 
+	/**
+	 * getPlural
+	 *
+	 * Plural if set manually.
+	 * Plural version of controller name in snake case.
+	 *
+	 * @return string
+	 */
 	public function getPlural()
 	{
 		return $this->plural ?: snake_case(str_plural($this->getControllerName()));
 	}
 
+	/**
+	 * setPlural
+	 *
+	 * @param string $value
+	 */
 	public function setPlural($value)
 	{
 		$this->plural = $value;
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Model
-	|--------------------------------------------------------------------------
-	|
-	| The model to get the data from.
-	|
-	*/
-
+	/**
+	 * model
+	 *
+	 * @var mixed
+	 */
 	protected $model;
 
+	/**
+	 * getModel
+	 *
+	 * New instance of model if set manually.
+	 * New instance of controller name singular. Follows Laravel naming convention.
+	 *
+	 * @return instance
+	 */
 	public function getModel()
 	{
 		$singular_model = str_singular($this->getControllerName());
@@ -90,57 +116,86 @@ trait DatTrait {
 	}
 
 
+	/**
+	 * setModel
+	 *
+	 * @param string $value
+	 */
 	public function setModel($value)
 	{
 		$this->model = $value;
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Static Model
-	|--------------------------------------------------------------------------
-	|
-	| For retrieving the model name without being initialised.
-	|
-	*/
-
-
+	/**
+	 * getStaticModel
+	 *
+	 * Same as getModel() without creating an instance.
+	 *
+	 * @return string
+	 */
 	public function getStaticModel()
 	{
 		$singular_model = str_singular($this->getControllerName());
 		return ($this->model) ? $this->model : $singular_model;
 	}
 
+	/**
+	 * rules
+	 *
+	 * @var array
+	 */
 	protected $rules;
 
+	/**
+	 * getRules
+	 *
+	 * Rules if set manually.
+	 * Looks for public static $rules in model.
+	 *
+	 * @return array
+	 */
 	public function getRules()
 	{
 		$staticModel = $this->getStaticModel();
 		return ($this->rules) ? $this->rules : $staticModel::$rules;
 	}
 
+	/**
+	 * setRules
+	 *
+	 * @param array $rules
+	 */
 	public function setRules($rules)
 	{
 		$this->rules = $rules;
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Views
-	|--------------------------------------------------------------------------
-	|
-	| The name of the directory where the views reside.
-	|
-	*/
-
+	/**
+	 * views
+	 *
+	 * @var string
+	 */
 	protected $views;
 
+	/**
+	 * getViews
+	 *
+	 * Views if set manually.
+	 * Uses getPlural() otherwise.
+	 *
+	 * @return string
+	 */
 	public function getViews()
 	{
 		return $this->views ?: $this->getPlural();
 	}
 
 
+	/**
+	 * setViews
+	 *
+	 * @param string $value
+	 */
 	public function setViews($value)
 	{
 		$this->views = $value;

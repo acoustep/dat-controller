@@ -1,6 +1,11 @@
 <?php namespace Acoustep\DatController;
 
 trait DatUpdateTrait {
+	/**
+	 * update
+	 *
+	 * @param integer $id
+	 */
 	public function update($id)
 	{
 		$staticModel = $this->getStaticModel();

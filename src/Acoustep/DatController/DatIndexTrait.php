@@ -1,6 +1,10 @@
 <?php namespace Acoustep\DatController;
 
 trait DatIndexTrait {
+	/**
+	 * index
+	 *
+	 */
 	public function index()
 	{
 		list($pagination, $orderBy) = $this->indexConfig();
@@ -17,6 +21,11 @@ trait DatIndexTrait {
 			->with($this->getPlural(), $model);
 	}
 
+	/**
+	 * indexConfig
+	 *
+	 * @return array
+	 */
 	protected function indexConfig()
 	{
 		$pagination = (property_exists(
@@ -32,6 +41,12 @@ trait DatIndexTrait {
 		return [$pagination, $orderBy];
 	}
 
+	/**
+	 * buildOrder
+	 *
+	 * @param eloquent $model
+	 * @param array $orderBy
+	 */
 	protected function buildOrder($model, $orderBy = ['id' => 'desc'])
 	{
 		if(count($orderBy) === 0)
