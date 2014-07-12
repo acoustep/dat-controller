@@ -5,7 +5,7 @@ trait DatUpdateTrait {
 	{
 		$staticModel = $this->getStaticModel();
 		$model = $this->getModel()->findOrFail($id);
-		$validator = \Validator::make($data = \Input::all(), $staticModel::$rules);
+		$validator = \Validator::make($data = \Input::all(), $this->getRules());
 
 		if ($validator->fails())
 		{

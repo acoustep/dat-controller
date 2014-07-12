@@ -91,7 +91,7 @@ class DatResourceTraitTest extends TestCase {
 	/**
 	 * @test
 	 */
-	public function check_store_method()
+	public function check_store_method_succeeds()
 	{
 		$input = Input::shouldReceive('all')->andReturn(['title' => 'test', 'content' => 'test']);
 		$this->controller->setRules(['title' => 'required']);
@@ -102,6 +102,44 @@ class DatResourceTraitTest extends TestCase {
 		$this->controller->store();
 	}
 
+	/**
+	 * @test
+	 */
+	public function check_store_method_fails()
+	{
+		$input = Input::shouldReceive('all')->andReturn(['title' => 'test', 'content' => 'test']);
+		$this->controller->setRules(['title' => 'required']);
+		$validator = Validator::shouldReceive('make->fails')->andReturn(true);
+		$view = Redirect::shouldReceive('back->withErrors->withInput')->once();
+		$this->controller->store();
+	}
 
+	/**
+	 * @test
+	 */
+	public function check_update_method_succeeds()
+	{
+		$input = Input::shouldReceive('all')->andReturn(['title' => 'test', 'content' => 'test']);
+		$this->controller->setRules(['title' => 'required']);
+		$validator = Validator::shouldReceive('make->fails')->andReturn(false);
+		$model = m::mock('Post')->shouldReceive('create')->with($input);
+		$this->controller->setModel($model);
+		$view = Redirect::shouldReceive('route')->once();
+		$this->controller->update(1);
+	}
+
+	/**
+	 * @test
+	 */
+	public function check_update_method_fails()
+	{
+		$input = Input::shouldReceive('all')->andReturn(['title' => 'test', 'content' => 'test']);
+		$this->controller->setRules(['title' => 'required']);
+		$validator = Validator::shouldReceive('make->fails')->andReturn(true);
+		$model = m::mock('Post')->shouldReceive('findorFail')->with(1);
+		$this->controller->setModel($model);
+		$view = Redirect::shouldReceive('back->withErrors->withInput')->once();
+		$this->controller->update(1);
+	}
 }
 
