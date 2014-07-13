@@ -1,7 +1,7 @@
 {
     "name": "acoustep/dat-controller",
 		"license": "MIT",
-    "description": "",
+    "description": "A trait for Laravel 4 controllers and their resource actions.",
 		"keywords": [
 			"laravel", "dat-controller", "datcontroller", 
 			"thin controller", "controller trait"
