@@ -1,5 +1,7 @@
 # DatController - A Laravel 4 Controller Trait
 
+[![Build Status](https://travis-ci.org/acoustep/dat-controller.svg?branch=master)](https://travis-ci.org/acoustep/dat-controller)
+
 DatController is a trait for Laravel 4 controllers.  It provides some basic functionality for all resource actions so you don't have to write duplicate code.
 
 ## Getting Started
