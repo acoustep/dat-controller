@@ -200,6 +200,27 @@ trait DatTrait {
 	{
 		$this->views = $value;
 	}
+
+	function __call($method, $args)
+	{
+		$action = "dat".ucwords($method);
+
+		$send_arguments = true;
+
+		if(count($args) > 1)
+			$arg = end($args);
+		elseif(count($args) === 1)
+			$arg = $args[0];
+		else
+			$send_arguments = false;
+
+		if(method_exists($this, $action)) {
+			if($send_arguments)
+				return $this->$action($arg);
+			else
+				return $this->$action();
+		}
+	}
 }
 
 

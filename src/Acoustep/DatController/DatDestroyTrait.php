@@ -6,7 +6,7 @@ trait DatDestroyTrait {
 	 *
 	 * @param integer $id
 	 */
-	public function destroy($id)
+	public function datDestroy($id)
 	{
 		$data = $this->getModel()->destroy($id);
 

@@ -6,7 +6,7 @@ trait DatStoreTrait {
 	 * store
 	 *
 	 */
-	public function store()
+	public function datStore()
 	{
 		$validator = \Validator::make($data = \Input::all(), $this->getRules());
 

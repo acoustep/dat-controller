@@ -6,7 +6,7 @@ trait DatUpdateTrait {
 	 *
 	 * @param integer $id
 	 */
-	public function update($id)
+	public function datUpdate($id)
 	{
 		$staticModel = $this->getStaticModel();
 		$model = $this->getModel()->findOrFail($id);

@@ -5,7 +5,7 @@ trait DatIndexTrait {
 	 * index
 	 *
 	 */
-	public function index()
+	public function datIndex()
 	{
 		list($pagination, $orderBy) = $this->indexConfig();
 

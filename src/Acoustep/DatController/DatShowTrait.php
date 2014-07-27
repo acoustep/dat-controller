@@ -6,7 +6,7 @@ trait DatShowTrait {
 	 *
 	 * @param integer $id
 	 */
-	public function show($id)
+	public function datShow($id)
 	{
 		$data = $this->getModel()->find($id);
 

@@ -10,4 +10,3 @@ trait DatResourceTrait {
 			DatDestroyTrait,
 			DatShowTrait;
 }
-

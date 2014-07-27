@@ -6,7 +6,7 @@ trait DatEditTrait {
 	 *
 	 * @param integer $id
 	 */
-	public function edit($id)
+	public function datEdit($id)
 	{
 		$data = $this->getModel()->find($id);
 

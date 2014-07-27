@@ -5,7 +5,7 @@ trait DatCreateTrait {
 	 * create
 	 *
 	 */
-	public function create()
+	public function datCreate()
 	{
 		$model = $this->getModel();
 
